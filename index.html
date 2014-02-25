@@ -5,6 +5,8 @@
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     </head>
     <body>
+        <button type="Button" id="Sort">Sort</button>
+        <br></br>
         <script type="text/javascript">
             d3.json("medals.json", function(data){
                 var w = 800;
@@ -18,9 +20,19 @@
                     }
                 }
 
+                var xScale = d3.scale.linear()
+                            .domain([0,d3.max(dataset, function(d){
+                                return d.Bronze + d.Silver + d.Bronze
+                            })])
+                            .range([0,w])
+
                 var svg = d3.select("body").append("svg")
                             .attr("width",w)
                             .attr("height",h);
+                var buttonSort = d3.select("#Sort")
+                                .on("click", function(){
+                                    sortBars();
+                                });
 
                 svg.selectAll("rect")
                     .data(dataset)
@@ -32,9 +44,9 @@
                     })
                     .attr("width", function(d,i){
                         
-                        return (d.Bronze + 
+                        return xScale(d.Bronze + 
                                 d.Silver +
-                                d.Gold)*2
+                                d.Gold)
                     })
                     .attr("height",35)
                     .attr("fill","CadetBlue")
@@ -58,23 +70,37 @@
                     .attr("font-size","11px")
                     .attr("fill","black");
 
-                    
+                    var sortedAlpha = false;
+
+                    var sortBars = function(){
+                        svg.selectAll("rect")
+                           .sort(function(a,b){
+                             if(!sortedAlpha){
+                                    
+                                    return d3.ascending((a.Bronze + 
+                                                        a.Silver +
+                                                        a.Gold),(b.Bronze + 
+                                                                b.Silver +
+                                                                b.Gold));
+                               
+                            }
+                        })
+                        .transition()
+                        .delay(function(d,i){
+                            return i*50;
+                        })
+                        .duration(1000)
+                        // .attr("x", function(d,i){
+                        //     return xScale(i);
+                        // })
+                    };
+                       
                 
 
 
-                // console.log(data[15])
-
-                // d3.select("body").selectAll("p")
-                //     .data(data)
-                //     .enter()
-                //     .append("p")
-                //     .text(function (d){
-                //         return d.Country
-                //     });
-
-
-
-            })
+            
+            });
+            
         </script>
     </body>
 </html>
