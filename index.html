@@ -7,15 +7,61 @@
     <body>
         <script type="text/javascript">
             d3.json("medals.json", function(data){
+                var w = 800;
+                var h = 1600;
+
                 dataset=[];
                 for( var i =0; i<data.length; i++){
                     if (data[i].Year=="Total"){
+                       
                         dataset.push(data[i])
-
-
                     }
-                    
                 }
+
+                var svg = d3.select("body").append("svg")
+                            .attr("width",w)
+                            .attr("height",h);
+
+                svg.selectAll("rect")
+                    .data(dataset)
+                    .enter()
+                    .append("rect")
+                    .attr("x",0)
+                    .attr("y", function(d,i){
+                        return i*40
+                    })
+                    .attr("width", function(d,i){
+                        
+                        return (d.Bronze + 
+                                d.Silver +
+                                d.Gold)*2
+                    })
+                    .attr("height",35)
+                    .attr("fill","CadetBlue")
+                    .attr("class",function (d){
+                        return d.Country
+                    });
+                    
+
+                svg.selectAll("text")
+                    .data(dataset)
+                    .enter()
+                    .append("text")
+                    .text(function(d){
+                        return d.Country;
+                    })
+                    .attr("x",0)
+                    .attr("y",function (d,i){
+                        return i*40-12;
+                    })
+                    .attr("font-family","sans-serif")
+                    .attr("font-size","11px")
+                    .attr("fill","black");
+
+                    
+                
+
+
                 // console.log(data[15])
 
                 // d3.select("body").selectAll("p")
