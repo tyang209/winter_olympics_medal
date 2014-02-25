@@ -1,0 +1,34 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Page Template</title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            d3.json("medals.json", function(data){
+                dataset=[];
+                for( var i =0; i<data.length; i++){
+                    if (data[i].Year=="Total"){
+                        dataset.push(data[i])
+
+
+                    }
+                    
+                }
+                // console.log(data[15])
+
+                // d3.select("body").selectAll("p")
+                //     .data(data)
+                //     .enter()
+                //     .append("p")
+                //     .text(function (d){
+                //         return d.Country
+                //     });
+
+
+
+            })
+        </script>
+    </body>
+</html>

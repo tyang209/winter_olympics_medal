@@ -1,0 +1,400 @@
+Country,NOC,Year,Bronze,Silver,Gold
+Australia,AUS,Total,3,1,5
+Australia,AUS,1994,1,0,0
+Australia,AUS,1998,1,0,0
+Australia,AUS,2002,0,0,2
+Australia,AUS,2006,1,0,1
+Australia,AUS,2010,0,1,2
+Austria,AUT,Total,76,69,55
+Austria,AUT,1924,0,1,2
+Austria,AUT,1928,1,3,0
+Austria,AUT,1932,0,1,1
+Austria,AUT,1936,2,1,1
+Austria,AUT,1948,4,3,1
+Austria,AUT,1952,2,4,2
+Austria,AUT,1956,4,3,4
+Austria,AUT,1960,3,2,1
+Austria,AUT,1964,3,5,4
+Austria,AUT,1968,4,4,3
+Austria,AUT,1972,2,2,1
+Austria,AUT,1976,2,2,2
+Austria,AUT,1980,2,2,3
+Austria,AUT,1984,1,0,0
+Austria,AUT,1988,2,5,3
+Austria,AUT,1992,8,7,6
+Austria,AUT,1994,4,3,2
+Austria,AUT,1998,9,5,3
+Austria,AUT,2002,10,4,3
+Austria,AUT,2006,7,7,9
+Austria,AUT,2010,6,5,4
+Belarus,BLR,Total,5,3,1
+Belarus,BLR,1994,0,2,0
+Belarus,BLR,1998,2,0,0
+Belarus,BLR,2002,1,0,0
+Belarus,BLR,2006,0,1,0
+Belarus,BLR,2010,2,0,1
+Belgium,BEL,Total,3,1,1
+Belgium,BEL,1924,1,0,0
+Belgium,BEL,1928,1,0,0
+Belgium,BEL,1948,0,1,1
+Belgium,BEL,1998,1,0,0
+Bulgaria,BUL,Total,3,2,1
+Bulgaria,BUL,1980,1,0,0
+Bulgaria,BUL,1998,0,0,1
+Bulgaria,BUL,2002,2,1,0
+Bulgaria,BUL,2006,0,1,0
+Canada,CAN,Total,48,45,52
+Canada,CAN,1924,0,0,1
+Canada,CAN,1928,0,0,1
+Canada,CAN,1932,5,1,1
+Canada,CAN,1936,0,1,0
+Canada,CAN,1948,1,0,2
+Canada,CAN,1952,1,0,1
+Canada,CAN,1956,2,1,0
+Canada,CAN,1960,1,1,2
+Canada,CAN,1964,2,0,1
+Canada,CAN,1968,1,1,1
+Canada,CAN,1972,0,1,0
+Canada,CAN,1976,1,1,1
+Canada,CAN,1980,1,1,0
+Canada,CAN,1984,1,1,2
+Canada,CAN,1988,3,2,0
+Canada,CAN,1992,2,3,2
+Canada,CAN,1994,4,6,3
+Canada,CAN,1998,4,5,6
+Canada,CAN,2002,7,3,7
+Canada,CAN,2006,7,10,7
+Canada,CAN,2010,5,7,14
+China,CAN,Total,17,18,9
+China,CAN,1992,0,3,0
+China,CAN,1994,2,1,0
+China,CAN,1998,2,6,0
+China,CAN,2002,4,2,2
+China,CAN,2006,5,4,2
+China,CAN,2010,4,2,5
+Croatia,CRO,Total,1,5,4
+Croatia,CRO,2002,0,1,3
+Croatia,CRO,2006,0,2,1
+Croatia,CRO,2010,1,2,0
+Czech Republic,CZE,Total,6,5,5
+Czech Republic,CZE,1998,1,1,1
+Czech Republic,CZE,2002,0,2,1
+Czech Republic,CZE,2006,1,2,1
+Czech Republic,CZE,2010,4,0,2
+Czechoslovakia,TCH,Total,15,8,2
+Czechoslovakia,TCH,1928,1,0,0
+Czechoslovakia,TCH,1948,0,1,0
+Czechoslovakia,TCH,1960,0,1,0
+Czechoslovakia,TCH,1964,1,0,0
+Czechoslovakia,TCH,1968,1,2,1
+Czechoslovakia,TCH,1972,2,0,1
+Czechoslovakia,TCH,1976,0,1,0
+Czechoslovakia,TCH,1980,1,0,0
+Czechoslovakia,TCH,1984,4,2,0
+Czechoslovakia,TCH,1988,2,1,0
+Czechoslovakia,TCH,1992,3,0,0
+Denmark,DEN,Total,0,1,0
+Denmark,DEN,1998,0,1,0
+East Germany,GDR,Total,35,36,39
+East Germany,GDR,1968,2,2,1
+East Germany,GDR,1972,7,3,4
+East Germany,GDR,1976,7,5,7
+East Germany,GDR,1980,7,7,9
+East Germany,GDR,1984,6,9,9
+East Germany,GDR,1988,6,10,9
+Estonia,EST,Total,1,2,4
+Estonia,EST,2002,1,1,1
+Estonia,EST,2006,0,0,3
+Estonia,EST,2010,0,1,0
+Finland,FIN,Total,56,59,41
+Finland,FIN,1924,3,4,4
+Finland,FIN,1928,1,1,2
+Finland,FIN,1932,1,1,1
+Finland,FIN,1936,3,2,1
+Finland,FIN,1948,2,3,1
+Finland,FIN,1952,2,4,3
+Finland,FIN,1956,1,3,3
+Finland,FIN,1960,3,3,2
+Finland,FIN,1964,3,4,3
+Finland,FIN,1968,2,2,1
+Finland,FIN,1972,1,4,0
+Finland,FIN,1976,1,4,2
+Finland,FIN,1980,3,5,1
+Finland,FIN,1984,6,3,4
+Finland,FIN,1988,2,1,4
+Finland,FIN,1992,3,1,3
+Finland,FIN,1994,5,1,0
+Finland,FIN,1998,6,4,2
+Finland,FIN,2002,1,2,4
+Finland,FIN,2006,3,6,0
+Finland,FIN,2010,4,1,0
+France,FRA,Total,40,27,27
+France,FRA,1924,3,0,0
+France,FRA,1928,0,0,1
+France,FRA,1932,0,0,1
+France,FRA,1936,1,0,0
+France,FRA,1948,2,1,2
+France,FRA,1952,1,0,0
+France,FRA,1960,2,0,1
+France,FRA,1964,0,4,3
+France,FRA,1968,2,3,4
+France,FRA,1972,2,1,0
+France,FRA,1976,1,0,0
+France,FRA,1980,1,0,0
+France,FRA,1984,2,1,0
+France,FRA,1988,1,0,1
+France,FRA,1992,1,5,3
+France,FRA,1994,4,1,0
+France,FRA,1998,5,1,2
+France,FRA,2002,2,5,4
+France,FRA,2006,4,2,3
+France,FRA,2010,6,3,2
+Germany,GER,Total,47,72,67
+Germany,GER,1928,1,0,0
+Germany,GER,1932,2,0,0
+Germany,GER,1936,0,3,3
+Germany,GER,1952,2,2,1
+Germany,GER,1992,6,10,10
+Germany,GER,1994,8,7,9
+Germany,GER,1998,8,9,12
+Germany,GER,2002,8,16,12
+Germany,GER,2006,6,12,11
+Germany,GER,2010,6,13,9
+Hungary,HUN,Total,4,2,0
+Hungary,HUN,1932,1,0,0
+Hungary,HUN,1936,1,0,0
+Hungary,HUN,1948,0,1,0
+Hungary,HUN,1952,1,0,0
+Hungary,HUN,1956,1,0,0
+Hungary,HUN,1980,0,1,0
+Italy,ITA,Total,37,32,37
+Italy,ITA,1948,0,0,1
+Italy,ITA,1952,1,0,1
+Italy,ITA,1956,0,2,1
+Italy,ITA,1960,1,0,0
+Italy,ITA,1964,3,1,0
+Italy,ITA,1968,0,0,4
+Italy,ITA,1972,1,2,2
+Italy,ITA,1976,1,2,1
+Italy,ITA,1980,0,2,0
+Italy,ITA,1984,0,0,2
+Italy,ITA,1988,2,1,2
+Italy,ITA,1992,4,6,4
+Italy,ITA,1994,8,5,7
+Italy,ITA,1998,2,6,2
+Italy,ITA,2002,5,4,4
+Italy,ITA,2006,6,0,5
+Italy,ITA,2010,3,1,1
+Japan,JPN,Total,15,13,9
+Japan,JPN,1956,0,1,0
+Japan,JPN,1972,1,1,1
+Japan,JPN,1980,0,1,0
+Japan,JPN,1984,0,1,0
+Japan,JPN,1988,1,0,0
+Japan,JPN,1992,4,2,1
+Japan,JPN,1994,2,2,1
+Japan,JPN,1998,4,1,5
+Japan,JPN,2002,1,1,0
+Japan,JPN,2006,0,0,1
+Japan,JPN,2010,2,3,0
+Kazakhstan,KAZ,Total,2,3,1
+Kazakhstan,KAZ,1994,0,2,1
+Kazakhstan,KAZ,1998,2,0,0
+Kazakhstan,KAZ,2010,0,1,0
+"Korea, North (PDR of Korea)",PRK,Total,1,1,0
+"Korea, North (PDR of Korea)",PRK,1964,0,1,0
+"Korea, North (PDR of Korea)",PRK,1992,1,0,0
+"Korea, South",KOR,Total,8,14,23
+"Korea, South",KOR,1992,1,1,2
+"Korea, South",KOR,1994,1,1,4
+"Korea, South",KOR,1998,2,1,3
+"Korea, South",KOR,2002,0,2,2
+"Korea, South",KOR,2006,2,3,6
+"Korea, South",KOR,2010,2,6,6
+Latvia,LAT,Total,1,2,0
+Latvia,LAT,2006,1,0,0
+Latvia,LAT,2010,0,2,0
+Liechtenstein,LIE,Total,5,2,2
+Liechtenstein,LIE,1976,2,0,0
+Liechtenstein,LIE,1980,0,2,2
+Liechtenstein,LIE,1984,2,0,0
+Liechtenstein,LIE,1988,1,0,0
+Luxembourg,LUX,Total,0,2,0
+Luxembourg,LUX,1992,0,2,0
+Netherlands,NED,Total,26,31,29
+Netherlands,NED,1952,0,3,0
+Netherlands,NED,1960,1,1,0
+Netherlands,NED,1964,0,1,1
+Netherlands,NED,1968,3,3,3
+Netherlands,NED,1972,2,3,4
+Netherlands,NED,1976,3,2,1
+Netherlands,NED,1980,1,2,1
+Netherlands,NED,1988,2,2,3
+Netherlands,NED,1992,2,1,1
+Netherlands,NED,1994,3,1,0
+Netherlands,NED,1998,2,4,5
+Netherlands,NED,2002,0,5,3
+Netherlands,NED,2006,4,2,3
+Netherlands,NED,2010,3,1,4
+New Zealand,NZL,Total,0,1,0
+New Zealand,NZL,1992,0,1,0
+Norway,NOR,Total,90,106,107
+Norway,NOR,1924,6,7,4
+Norway,NOR,1928,5,4,6
+Norway,NOR,1932,3,4,3
+Norway,NOR,1936,3,5,7
+Norway,NOR,1948,3,3,4
+Norway,NOR,1952,6,3,7
+Norway,NOR,1956,1,1,2
+Norway,NOR,1960,0,3,3
+Norway,NOR,1964,6,6,3
+Norway,NOR,1968,2,6,6
+Norway,NOR,1972,5,5,2
+Norway,NOR,1976,1,3,3
+Norway,NOR,1980,6,3,1
+Norway,NOR,1984,4,2,3
+Norway,NOR,1988,2,3,0
+Norway,NOR,1992,5,6,9
+Norway,NOR,1994,5,11,10
+Norway,NOR,1998,5,10,10
+Norway,NOR,2002,7,5,13
+Norway,NOR,2006,9,8,2
+Norway,NOR,2010,6,8,9
+Poland,POL,Total,6,6,2
+Poland,POL,1956,1,0,0
+Poland,POL,1960,1,1,0
+Poland,POL,1972,0,0,1
+Poland,POL,2002,1,1,0
+Poland,POL,2006,1,1,0
+Poland,POL,2010,2,3,1
+Romania,ROU,Total,1,0,0
+Romania,ROU,1968,1,0,0
+Russian Federation,RUS,Total,26,29,36
+Russian Federation,RUS,1994,4,8,11
+Russian Federation,RUS,1998,3,6,9
+Russian Federation,RUS,2002,4,4,5
+Russian Federation,RUS,2006,8,6,8
+Russian Federation,RUS,2010,7,5,3
+Slovakia,SVK,Total,1,2,1
+Slovakia,SVK,2006,0,1,0
+Slovakia,SVK,2010,1,1,1
+Slovenia,SLO,Total,5,2,0
+Slovenia,SLO,1994,3,0,0
+Slovenia,SLO,2002,1,0,0
+Slovenia,SLO,2010,1,2,0
+Soviet Union,URS,Total,59,57,78
+Soviet Union,URS,1956,6,3,7
+Soviet Union,URS,1960,9,5,7
+Soviet Union,URS,1964,6,8,11
+Soviet Union,URS,1968,3,5,5
+Soviet Union,URS,1972,3,5,8
+Soviet Union,URS,1976,8,6,13
+Soviet Union,URS,1980,6,6,10
+Soviet Union,URS,1984,9,10,6
+Soviet Union,URS,1988,9,9,11
+Spain,ESP,Total,1,0,1
+Spain,ESP,1972,0,0,1
+Spain,ESP,1992,1,0,0
+Sweden,SWE,Total,48,33,48
+Sweden,SWE,1924,0,1,1
+Sweden,SWE,1928,1,2,2
+Sweden,SWE,1932,0,2,1
+Sweden,SWE,1936,3,2,2
+Sweden,SWE,1948,3,3,4
+Sweden,SWE,1952,4,0,0
+Sweden,SWE,1956,4,4,2
+Sweden,SWE,1960,2,2,3
+Sweden,SWE,1964,1,3,3
+Sweden,SWE,1968,3,2,3
+Sweden,SWE,1972,2,1,1
+Sweden,SWE,1976,2,0,0
+Sweden,SWE,1980,1,0,3
+Sweden,SWE,1984,2,2,4
+Sweden,SWE,1988,2,0,4
+Sweden,SWE,1992,3,0,1
+Sweden,SWE,1994,0,1,2
+Sweden,SWE,1998,1,2,0
+Sweden,SWE,2002,5,2,0
+Sweden,SWE,2006,5,2,7
+Sweden,SWE,2010,4,2,5
+Switzerland,SUI,Total,46,37,44
+Switzerland,SUI,1924,1,0,2
+Switzerland,SUI,1928,1,0,0
+Switzerland,SUI,1932,0,1,0
+Switzerland,SUI,1936,0,2,1
+Switzerland,SUI,1948,3,4,3
+Switzerland,SUI,1952,2,0,0
+Switzerland,SUI,1956,1,2,3
+Switzerland,SUI,1960,0,0,2
+Switzerland,SUI,1968,4,2,0
+Switzerland,SUI,1972,3,3,4
+Switzerland,SUI,1976,1,3,1
+Switzerland,SUI,1980,3,1,1
+Switzerland,SUI,1984,1,2,2
+Switzerland,SUI,1988,5,5,5
+Switzerland,SUI,1992,2,0,1
+Switzerland,SUI,1994,2,4,3
+Switzerland,SUI,1998,3,2,2
+Switzerland,SUI,2002,6,2,3
+Switzerland,SUI,2006,5,4,5
+Switzerland,SUI,2010,3,0,6
+Ukraine,UKR,Total,3,1,1
+Ukraine,UKR,1994,1,0,1
+Ukraine,UKR,1998,0,1,0
+Ukraine,UKR,2006,2,0,0
+United Kingdom (Great Britain),GBR,Total,10,3,9
+United Kingdom (Great Britain),GBR,1924,2,1,1
+United Kingdom (Great Britain),GBR,1928,1,0,0
+United Kingdom (Great Britain),GBR,1936,1,1,1
+United Kingdom (Great Britain),GBR,1948,2,0,0
+United Kingdom (Great Britain),GBR,1952,0,0,1
+United Kingdom (Great Britain),GBR,1964,0,0,1
+United Kingdom (Great Britain),GBR,1976,0,0,1
+United Kingdom (Great Britain),GBR,1980,0,0,1
+United Kingdom (Great Britain),GBR,1984,0,0,1
+United Kingdom (Great Britain),GBR,1994,2,0,0
+United Kingdom (Great Britain),GBR,1998,1,0,0
+United Kingdom (Great Britain),GBR,2002,1,0,1
+United Kingdom (Great Britain),GBR,2006,0,1,0
+United Kingdom (Great Britain),GBR,2010,0,0,1
+United States,USA,Total,71,95,87
+United States,USA,1924,1,2,1
+United States,USA,1928,2,2,2
+United States,USA,1932,2,4,6
+United States,USA,1936,3,0,1
+United States,USA,1948,2,4,3
+United States,USA,1952,1,6,4
+United States,USA,1956,2,3,2
+United States,USA,1960,3,4,3
+United States,USA,1964,3,2,1
+United States,USA,1968,1,5,1
+United States,USA,1972,3,2,3
+United States,USA,1976,4,3,3
+United States,USA,1980,2,4,6
+United States,USA,1984,0,4,4
+United States,USA,1988,3,1,2
+United States,USA,1992,2,4,5
+United States,USA,1994,2,5,6
+United States,USA,1998,4,3,6
+United States,USA,2002,11,13,10
+United States,USA,2006,7,9,9
+United States,USA,2010,13,15,9
+United Team,EUN,Total,8,6,9
+United Team,EUN,1992,8,6,9
+United Team of Germany,EUA,Total,5,6,8
+United Team of Germany,EUA,1956,1,0,1
+United Team of Germany,EUA,1960,1,3,4
+United Team of Germany,EUA,1964,3,3,3
+Uzbekistan,UZB,Total,0,0,1
+Uzbekistan,UZB,1994,0,0,1
+West Germany,FRG,Total,13,15,13
+West Germany,FRG,1952,0,0,2
+West Germany,FRG,1968,3,2,2
+West Germany,FRG,1972,1,1,3
+West Germany,FRG,1976,3,5,2
+West Germany,FRG,1980,3,2,0
+West Germany,FRG,1984,1,1,2
+West Germany,FRG,1988,2,4,2
+Yugoslavia,YUG,Total,1,3,0
+Yugoslavia,YUG,1984,0,1,0
+Yugoslavia,YUG,1988,1,2,0
