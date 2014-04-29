@@ -82,102 +82,125 @@
                                 .on("click", function(){
                                     sortBars();
                                 });
-
+                              
                 var bronzeBars = svg.append("g");
 
                 var silverBars = svg.append("g");      
 
-                var goldBars = svg.append("g");
+                var goldBars = svg.append("g");                                
+                function update(medalData){
 
-                bronzeBars.selectAll("rect")
-                    .data(dataset)
-                    .enter()
-                    .append("rect")
-                    .attr("x",0)
-                    .attr("y", function(d,i){
-                        return i* (h/dataset.length) 
-                    })
-                    .attr("width", function(d,i){
+
+                    bronzeBars.selectAll("rect")
+                        .data(dataset)
+                        .enter()
+                        .append("rect")
+                        .attr("x",0)
+                        .attr("y", function(d,i){
+                            return i* (h/dataset.length) 
+                        })
+                        .attr("width", function(d,i){
+                            
+                            return xScale(d.Bronze )
+                        })
+                        .attr("height",function(d,i){
+                            return h / dataset.length;
+                        })
+                        .attr("fill","#905923")
+                        .transition()
+              
+                        .attr("class",function (d){
+                            return d.Country +"Bronze"
+                        })
+
+                        .attr("dataum", function(d){
+                            return d.Bronze
+                        });
                         
-                        return xScale(d.Bronze )
-                    })
-                    .attr("height",function(d,i){
-                        return h / dataset.length;
-                    })
-                    .attr("fill","#905923")
-                    .attr("class",function (d){
-                        return d.Country +"Bronze"
-                    })
+                    silverBars.selectAll("rect")
+                        .data(dataset)
+                        .enter()
+                        .append("rect")
+                        .attr("x",function(d,i){
+                            return xScale(d.Bronze)
+                        })
+                        .attr("y", function(d,i){
+                            return i* (h/dataset.length) 
+                        })
+                        .attr("width", function(d,i){
+                            
+                            return xScale(d.Silver )
+                        })
+                        .attr("height",function(d,i){
+                            return h / dataset.length;
+                        })
+                        .attr("fill","#D3D3D3")
+                        .transition()
+              
+                        .attr("class",function (d){
+                            return d.Country +"Silver"
+                        });
 
-                    .attr("dataum", function(d){
-                        return d.Bronze
-                    });
-                    
-                silverBars.selectAll("rect")
-                    .data(dataset)
-                    .enter()
-                    .append("rect")
-                    .attr("x",function(d,i){
-                        return xScale(d.Bronze)
-                    })
-                    .attr("y", function(d,i){
-                        return i* (h/dataset.length) 
-                    })
-                    .attr("width", function(d,i){
+                    goldBars.selectAll("rect")
+                        .data(dataset)
+                        .enter()
+                        .append("rect")
+
+                        .attr("x",function(d,i){
+                            return xScale(d.Bronze) + xScale(d.Silver)
+                        })
+                        .attr("y", function(d,i){
+                            return i* (h/dataset.length) 
+                        })
+                        .attr("width", function(d,i){
+                            
+                            return xScale(d.Gold )
+                        })
+                        .attr("height",function(d,i){
+                            return h / dataset.length;
+                        })
+                        .attr("fill","#ffd700")
+                        .transition()
+             
+                        .attr("class",function (d){
+                            return d.Country +"Gold"
+                        });
+
+
+                    svg.selectAll("text")
+                        .data(dataset)
+                        .enter()
+  
+                        .append("text")
+                        .text(function(d){
+                            return d.Country;
+                        })
+                        .transition()
+                 
+                        .attr("x",5)
+                        .attr("y",function (d,i){
+                            return i*(h / dataset.length) +20;
+                        })
+                        .attr("font-family","sans-serif")
+                        .attr("font-size","11px")
+                        .attr("fill","black");
                         
-                        return xScale(d.Silver )
-                    })
-                    .attr("height",function(d,i){
-                        return h / dataset.length;
-                    })
-                    .attr("fill","#D3D3D3")
-                    .attr("class",function (d){
-                        return d.Country +"Silver"
-                    });
-
-                goldBars.selectAll("rect")
-                    .data(dataset)
-                    .enter()
-                    .append("rect")
-                    .attr("x",function(d,i){
-                        return xScale(d.Bronze) + xScale(d.Silver)
-                    })
-                    .attr("y", function(d,i){
-                        return i* (h/dataset.length) 
-                    })
-                    .attr("width", function(d,i){
-                        
-                        return xScale(d.Gold )
-                    })
-                    .attr("height",function(d,i){
-                        return h / dataset.length;
-                    })
-                    .attr("fill","#ffd700")
-                    .attr("class",function (d){
-                        return d.Country +"Gold"
-                    });
+                    // svg.append("g")
+                    //     .attr("class","x axis")
+                    //     .attr("translate(0," + h +")")
+                    //     .call(d3.svg.axis().scale(xScale).orient("bottom"));
+                    }
 
 
-                svg.selectAll("text")
-                    .data(dataset)
-                    .enter()
-                    .append("text")
-                    .text(function(d){
-                        return d.Country;
-                    })
-                    .attr("x",5)
-                    .attr("y",function (d,i){
-                        return i*(h / dataset.length) +20;
-                    })
-                    .attr("font-family","sans-serif")
-                    .attr("font-size","11px")
-                    .attr("fill","black");
-                    
-                svg.append("g")
-                    .attr("class","x axis")
-                    .attr("translate(0," + h +")")
-                    .call(d3.svg.axis().scale(xScale).orient("bottom"));
 
+                    update(dataset);
+
+                    function sortBars(){
+                        sortTotal(dataset);
+                        update(dataset);
+
+
+                    }
                     // var sortedAlpha = false;
 
                     // var sortBars = function(){
