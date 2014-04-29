@@ -9,34 +9,87 @@
         <br></br>
         <script type="text/javascript">
             d3.json("medals.json", function(data){
+                //data is an array of objects
                 var w = 800;
                 var h = 1600;
 
                 dataset=[];
                 for( var i =0; i<data.length; i++){
                     if (data[i].Year=="Total"){
-                       
-                        dataset.push(data[i])
+                        
+                        var new_data = data[i]
+                        new_data.TotalMedals=new_data.Bronze + new_data.Silver + new_data.Gold;
+                        dataset.push(new_data)
                     }
                 }
 
+
+                function sortTotal(list){
+
+                    list.sort(function (a,b) {
+
+                        if (a.TotalMedals < b.TotalMedals)
+                            return -1;
+                        if (a.TotalMedals > b.TotalMedals)
+                            return 1;
+                        return 0;
+
+                    })
+
+
+                };
+
+                function sortAlpha(list){
+                    list.sort(function (a,b) {
+
+                        if (a.Country < b.Country)
+                            return -1;
+                        if (a.Country > b.Country)
+                            return 1;
+                        return 0;
+
+                    })
+
+
+                };
+
+                
+
+
+                // var dataset_keys = Object.keys(dataset);
+                // var dataset_sorted_alpha =[];
+                // dataset_keys.sort();
+                // for  (var i=0; i<dataset_keys.length; i++){
+                //     var key = dataset_keys[i];
+                    
+                //     dataset_sorted_alpha.push(dataset[key]);
+
+
+                // }
+
+
                 var xScale = d3.scale.linear()
                             .domain([0,d3.max(dataset.map(function(d){
-                                                return d.Bronze + 
-                                                d.Silver +
-                                                d.Gold
+                                                return d.TotalMedals
                             }))])
-                            .range( [ 0 ,h ], 0.02);
+                            .range( [ 0 ,w ], 0.02);
 
                 var svg = d3.select("body").append("svg")
                             .attr("width",w)
                             .attr("height",h);
+
                 var buttonSort = d3.select("#Sort")
                                 .on("click", function(){
                                     sortBars();
                                 });
 
-                svg.selectAll("rect")
+                var bronzeBars = svg.append("g");
+
+                var silverBars = svg.append("g");      
+
+                var goldBars = svg.append("g");
+
+                bronzeBars.selectAll("rect")
                     .data(dataset)
                     .enter()
                     .append("rect")
@@ -46,18 +99,64 @@
                     })
                     .attr("width", function(d,i){
                         
-                        return xScale(d.Bronze + 
-                                d.Silver +
-                                d.Gold)
+                        return xScale(d.Bronze )
                     })
                     .attr("height",function(d,i){
                         return h / dataset.length;
                     })
-                    .attr("fill","steelblue")
+                    .attr("fill","#905923")
                     .attr("class",function (d){
-                        return d.Country
+                        return d.Country +"Bronze"
+                    })
+
+                    .attr("dataum", function(d){
+                        return d.Bronze
                     });
                     
+                silverBars.selectAll("rect")
+                    .data(dataset)
+                    .enter()
+                    .append("rect")
+                    .attr("x",function(d,i){
+                        return xScale(d.Bronze)
+                    })
+                    .attr("y", function(d,i){
+                        return i* (h/dataset.length) 
+                    })
+                    .attr("width", function(d,i){
+                        
+                        return xScale(d.Silver )
+                    })
+                    .attr("height",function(d,i){
+                        return h / dataset.length;
+                    })
+                    .attr("fill","#D3D3D3")
+                    .attr("class",function (d){
+                        return d.Country +"Silver"
+                    });
+
+                goldBars.selectAll("rect")
+                    .data(dataset)
+                    .enter()
+                    .append("rect")
+                    .attr("x",function(d,i){
+                        return xScale(d.Bronze) + xScale(d.Silver)
+                    })
+                    .attr("y", function(d,i){
+                        return i* (h/dataset.length) 
+                    })
+                    .attr("width", function(d,i){
+                        
+                        return xScale(d.Gold )
+                    })
+                    .attr("height",function(d,i){
+                        return h / dataset.length;
+                    })
+                    .attr("fill","#ffd700")
+                    .attr("class",function (d){
+                        return d.Country +"Gold"
+                    });
+
 
                 svg.selectAll("text")
                     .data(dataset)
@@ -73,31 +172,36 @@
                     .attr("font-family","sans-serif")
                     .attr("font-size","11px")
                     .attr("fill","black");
+                    
+                svg.append("g")
+                    .attr("class","x axis")
+                    .attr("translate(0," + h +")")
+                    .call(d3.svg.axis().scale(xScale).orient("bottom"));
 
-                    var sortedAlpha = false;
+                    // var sortedAlpha = false;
 
-                    var sortBars = function(){
-                        svg.selectAll("rect")
-                           .sort(function(a,b){
-                             if(!sortedAlpha){
+                    // var sortBars = function(){
+                    //     svg.selectAll("rect")
+                    //        .sort(function(a,b){
+                    //          if(!sortedAlpha){
                                     
-                                    return d3.ascending((a.Bronze + 
-                                                        a.Silver +
-                                                        a.Gold),(b.Bronze + 
-                                                                b.Silver +
-                                                                b.Gold));
+                    //                 return d3.ascending((a.Bronze + 
+                    //                                     a.Silver +
+                    //                                     a.Gold),(b.Bronze + 
+                    //                                             b.Silver +
+                    //                                             b.Gold));
                                
-                            }
-                        })
-                        .transition()
-                        .delay(function(d,i){
-                            return i*50;
-                        })
-                        .duration(1000)
-                        // .attr("x", function(d,i){
-                        //     return xScale(i);
-                        // })
-                    };
+                    //         }
+                    //     })
+                    //     .transition()
+                    //     .delay(function(d,i){
+                    //         return i*50;
+                    //     })
+                    //     .duration(1000)
+                    //     // .attr("x", function(d,i){
+                    //     //     return xScale(i);
+                    //     // })
+                    // };
                        
                 
 
