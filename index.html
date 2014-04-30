@@ -3,16 +3,27 @@
         <meta charset="utf-8">
         <title>D3 Page Template</title>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <style type="text/css">
+        svg{
+            display: block;
+            margin-left:auto;
+            margin-right: auto;
+        }
+
+
+
+    </style>
     </head>
     <body>
         <button type="Button" id="Sort">Sort</button>
         <br></br>
+
         <script type="text/javascript">
             d3.json("medals.json", function(data){
                 //data is an array of objects
-                var w = 800;
+                var w = 1200;
                 var h = 1600;
-
+                var textPadding = 150
                 dataset=[];
                 for( var i =0; i<data.length; i++){
                     if (data[i].Year=="Total"){
@@ -29,9 +40,9 @@
                     list.sort(function (a,b) {
 
                         if (a.TotalMedals < b.TotalMedals)
-                            return -1;
-                        if (a.TotalMedals > b.TotalMedals)
                             return 1;
+                        if (a.TotalMedals > b.TotalMedals)
+                            return -1;
                         return 0;
 
                     })
@@ -72,7 +83,7 @@
                             .domain([0,d3.max(dataset.map(function(d){
                                                 return d.TotalMedals
                             }))])
-                            .range( [ 0 ,w ], 0.02);
+                            .range( [ 0 ,w-textPadding-20 ], 0.02);
 
                 var svg = d3.select("body").append("svg")
                             .attr("width",w)
@@ -85,17 +96,19 @@
                               
                 var bronzeBars = svg.append("g");
 
-                var silverBars = svg.append("g");      
+                var silverBars = svg.append("g");   
+
+                var sortedAlpha = new Boolean(true); //dataset starts in alpha order
 
                 var goldBars = svg.append("g");                                
-                function update(medalData){
+                function drawInitial(medalData){
 
 
                     bronzeBars.selectAll("rect")
                         .data(dataset)
                         .enter()
                         .append("rect")
-                        .attr("x",0)
+                        .attr("x",textPadding)
                         .attr("y", function(d,i){
                             return i* (h/dataset.length) 
                         })
@@ -122,7 +135,7 @@
                         .enter()
                         .append("rect")
                         .attr("x",function(d,i){
-                            return xScale(d.Bronze)
+                            return xScale(d.Bronze)+textPadding
                         })
                         .attr("y", function(d,i){
                             return i* (h/dataset.length) 
@@ -139,7 +152,11 @@
               
                         .attr("class",function (d){
                             return d.Country +"Silver"
-                        });
+
+                        })
+                        .attr("dataum", function(d){
+                            return d.Silver
+                        });                        ;
 
                     goldBars.selectAll("rect")
                         .data(dataset)
@@ -147,7 +164,7 @@
                         .append("rect")
 
                         .attr("x",function(d,i){
-                            return xScale(d.Bronze) + xScale(d.Silver)
+                            return xScale(d.Bronze) + xScale(d.Silver)+textPadding
                         })
                         .attr("y", function(d,i){
                             return i* (h/dataset.length) 
@@ -164,7 +181,10 @@
              
                         .attr("class",function (d){
                             return d.Country +"Gold"
-                        });
+                        })
+                        .attr("dataum", function(d){
+                            return d.Gold
+                        });                             
 
 
                     svg.selectAll("text")
@@ -177,7 +197,7 @@
                         })
                         .transition()
                  
-                        .attr("x",5)
+                        .attr("x",0)
                         .attr("y",function (d,i){
                             return i*(h / dataset.length) +20;
                         })
@@ -191,12 +211,111 @@
                     //     .call(d3.svg.axis().scale(xScale).orient("bottom"));
                     }
 
+                    function update(){
+
+                        bronzeBars.selectAll("rect")
+                        .data(dataset)
+                        .transition()
+                        .attr("x",textPadding)
+                        .attr("y", function(d,i){
+                            return i* (h/dataset.length) 
+                        })
+                        .attr("width", function(d,i){
+                            
+                            return xScale(d.Bronze )
+                        })
+                        // .attr("height",function(d,i){
+                        //     return h / dataset.length;
+                        // })
+                        // .attr("fill","#905923")
+
+              
+                        .attr("class",function (d){
+                            return d.Country +"Bronze"
+                        })
+
+                        .attr("dataum", function(d){
+                            return d.Bronze
+                        });
+                        
+                    silverBars.selectAll("rect")
+                        .data(dataset)
+                        .transition()
+                        .attr("x",function(d,i){
+                            return xScale(d.Bronze) +textPadding
+                        })
+                        .attr("y", function(d,i){
+                            return i* (h/dataset.length) 
+                        })
+                        .attr("width", function(d,i){
+                            
+                            return xScale(d.Silver )
+                        })
+                        // .attr("height",function(d,i){
+                        //     return h / dataset.length;
+                        // })
+
+                        .attr("dataum", function(d){
+                            return d.Silver
+                        });                        ;
+
+                    goldBars.selectAll("rect")
+                        .data(dataset)
+                        .transition()
+                        .attr("x",function(d,i){
+                            return xScale(d.Bronze) + xScale(d.Silver) +textPadding
+                        })
+                        .attr("y", function(d,i){
+                            return i* (h/dataset.length) 
+                        })
+                        .attr("width", function(d,i){
+                            
+                            return xScale(d.Gold )
+                        })
+                        // .attr("height",function(d,i){
+                        //     return h / dataset.length;
+                        // })
+                        // .attr("fill","#ffd700")
+
+             
+                        .attr("class",function (d){
+                            return d.Country +"Gold"
+                        })
+                        .attr("dataum", function(d){
+                            return d.Gold
+                        });      
+
+                    svg.selectAll("text")
+                        .data(dataset)
+                        .text(function(d){
+                            return d.Country;
+                        })
+                        .transition()
+                        .duration(1000)
+                        .attr("y",function (d,i){
+                            return i*(h / dataset.length) +20;
+                        })
+                        // .attr("font-family","sans-serif")
+                        // .attr("font-size","11px")
+                        // .attr("fill","black");
+                                               
+
+                    }
 
 
-                    update(dataset);
+
+                    drawInitial(dataset);
 
                     function sortBars(){
-                        sortTotal(dataset);
+                        if (sortedAlpha){
+                            sortTotal(dataset); 
+                            sortedAlpha = false;                          
+                        }else  {
+                            sortAlpha(dataset);
+                            sortedAlpha = true;
+
+                        }
+
                         update(dataset);
 
 
