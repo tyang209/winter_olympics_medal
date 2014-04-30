@@ -10,7 +10,16 @@
             margin-right: auto;
         }
 
+        .axis text {
+          font: 10px sans-serif;
+        }
 
+        .axis path,
+        .axis line {
+          fill: none;
+          stroke: #000;
+          shape-rendering: crispEdges;
+        }
 
     </style>
     </head>
@@ -23,7 +32,8 @@
                 //data is an array of objects
                 var w = 1200;
                 var h = 1600;
-                var textPadding = 150
+                var textPadding = 200
+                var scalePadding = 25
                 dataset=[];
                 for( var i =0; i<data.length; i++){
                     if (data[i].Year=="Total"){
@@ -100,6 +110,11 @@
 
                 var sortedAlpha = new Boolean(true); //dataset starts in alpha order
 
+                var barPadding = 3;
+
+                var xAxis   = d3.svg.axis().scale(xScale).orient("top");
+
+
                 var goldBars = svg.append("g");                                
                 function drawInitial(medalData){
 
@@ -110,14 +125,14 @@
                         .append("rect")
                         .attr("x",textPadding)
                         .attr("y", function(d,i){
-                            return i* (h/dataset.length) 
+                            return i* ((h-scalePadding)/dataset.length) + scalePadding
                         })
                         .attr("width", function(d,i){
                             
                             return xScale(d.Bronze )
                         })
                         .attr("height",function(d,i){
-                            return h / dataset.length;
+                            return h / dataset.length - barPadding;
                         })
                         .attr("fill","#905923")
                         .transition()
@@ -138,14 +153,14 @@
                             return xScale(d.Bronze)+textPadding
                         })
                         .attr("y", function(d,i){
-                            return i* (h/dataset.length) 
+                            return i* ((h-scalePadding)/dataset.length) + scalePadding
                         })
                         .attr("width", function(d,i){
                             
                             return xScale(d.Silver )
                         })
                         .attr("height",function(d,i){
-                            return h / dataset.length;
+                            return h / dataset.length - barPadding;
                         })
                         .attr("fill","#D3D3D3")
                         .transition()
@@ -167,14 +182,14 @@
                             return xScale(d.Bronze) + xScale(d.Silver)+textPadding
                         })
                         .attr("y", function(d,i){
-                            return i* (h/dataset.length) 
+                            return i* ((h-scalePadding)/dataset.length) + scalePadding
                         })
                         .attr("width", function(d,i){
                             
                             return xScale(d.Gold )
                         })
                         .attr("height",function(d,i){
-                            return h / dataset.length;
+                            return h / dataset.length - barPadding;
                         })
                         .attr("fill","#ffd700")
                         .transition()
@@ -199,11 +214,16 @@
                  
                         .attr("x",0)
                         .attr("y",function (d,i){
-                            return i*(h / dataset.length) +20;
+                            return i*((h -scalePadding) / dataset.length) +scalePadding +20;
                         })
-                        .attr("font-family","sans-serif")
-                        .attr("font-size","11px")
+                        .attr("font-family","Georgia")
+                        .attr("font-size","14px")
                         .attr("fill","black");
+
+                    svg.append("g")
+                        .attr("class","x axis")
+                         .attr("transform", "translate ("+textPadding+",20)")
+                        .call(xAxis);
                         
                     // svg.append("g")
                     //     .attr("class","x axis")
@@ -218,7 +238,7 @@
                         .transition()
                         .attr("x",textPadding)
                         .attr("y", function(d,i){
-                            return i* (h/dataset.length) 
+                            return i* ((h-scalePadding)/dataset.length) + scalePadding
                         })
                         .attr("width", function(d,i){
                             
@@ -245,7 +265,7 @@
                             return xScale(d.Bronze) +textPadding
                         })
                         .attr("y", function(d,i){
-                            return i* (h/dataset.length) 
+                            return i* ((h-scalePadding)/dataset.length) + scalePadding
                         })
                         .attr("width", function(d,i){
                             
@@ -266,7 +286,7 @@
                             return xScale(d.Bronze) + xScale(d.Silver) +textPadding
                         })
                         .attr("y", function(d,i){
-                            return i* (h/dataset.length) 
+                            return i* ((h-scalePadding)/dataset.length) + scalePadding
                         })
                         .attr("width", function(d,i){
                             
@@ -293,7 +313,7 @@
                         .transition()
                         .duration(1000)
                         .attr("y",function (d,i){
-                            return i*(h / dataset.length) +20;
+                            return i*((h -scalePadding) / dataset.length) +scalePadding +20;
                         })
                         // .attr("font-family","sans-serif")
                         // .attr("font-size","11px")
