@@ -77,16 +77,6 @@
                 
 
 
-                // var dataset_keys = Object.keys(dataset);
-                // var dataset_sorted_alpha =[];
-                // dataset_keys.sort();
-                // for  (var i=0; i<dataset_keys.length; i++){
-                //     var key = dataset_keys[i];
-                    
-                //     dataset_sorted_alpha.push(dataset[key]);
-
-
-                // }
 
 
                 var xScale = d3.scale.linear()
@@ -137,10 +127,12 @@
                         .attr("fill","#905923")
                         .transition()
               
-                        .attr("class",function (d){
+                        .attr("id",function (d){
                             return d.Country +"Bronze"
                         })
-
+                        .attr("class", function(d){
+                            return d.Country
+                        })
                         .attr("dataum", function(d){
                             return d.Bronze
                         });
@@ -164,9 +156,11 @@
                         })
                         .attr("fill","#D3D3D3")
                         .transition()
-              
-                        .attr("class",function (d){
+                        .attr("id",function (d){
                             return d.Country +"Silver"
+                        })
+                        .attr("class",function (d){
+                            return d.Country 
 
                         })
                         .attr("dataum", function(d){
@@ -194,8 +188,12 @@
                         .attr("fill","#ffd700")
                         .transition()
              
-                        .attr("class",function (d){
+                        .attr("id",function (d){
                             return d.Country +"Gold"
+                        })
+                        .attr("class",function (d){
+                            return d.Country 
+
                         })
                         .attr("dataum", function(d){
                             return d.Gold
@@ -250,8 +248,12 @@
                         // .attr("fill","#905923")
 
               
-                        .attr("class",function (d){
+                        .attr("id",function (d){
                             return d.Country +"Bronze"
+                        })
+                        .attr("class",function (d){
+                            return d.Country 
+
                         })
 
                         .attr("dataum", function(d){
@@ -274,7 +276,13 @@
                         // .attr("height",function(d,i){
                         //     return h / dataset.length;
                         // })
+                        .attr("id",function (d){
+                            return d.Country +"Silver"
+                        })
+                        .attr("class",function (d){
+                            return d.Country 
 
+                        })
                         .attr("dataum", function(d){
                             return d.Silver
                         });                        ;
@@ -298,8 +306,12 @@
                         // .attr("fill","#ffd700")
 
              
-                        .attr("class",function (d){
+                        .attr("id",function (d){
                             return d.Country +"Gold"
+                        })
+                        .attr("class",function (d){
+                            return d.Country 
+
                         })
                         .attr("dataum", function(d){
                             return d.Gold
@@ -325,7 +337,7 @@
 
 
                     drawInitial(dataset);
-
+                    setEvents();
                     function sortBars(){
                         if (sortedAlpha){
                             sortTotal(dataset); 
@@ -340,33 +352,44 @@
 
 
                     }
-                    // var sortedAlpha = false;
 
-                    // var sortBars = function(){
-                    //     svg.selectAll("rect")
-                    //        .sort(function(a,b){
-                    //          if(!sortedAlpha){
-                                    
-                    //                 return d3.ascending((a.Bronze + 
-                    //                                     a.Silver +
-                    //                                     a.Gold),(b.Bronze + 
-                    //                                             b.Silver +
-                    //                                             b.Gold));
-                               
-                    //         }
-                    //     })
-                    //     .transition()
-                    //     .delay(function(d,i){
-                    //         return i*50;
-                    //     })
-                    //     .duration(1000)
-                    //     // .attr("x", function(d,i){
-                    //     //     return xScale(i);
-                    //     // })
-                    // };
-                       
-                
+                    function setEvents(){
 
+                        svg.selectAll("rect")
+                            .on("click", function(){
+                                var country = this.getAttribute("class");
+
+                                getCountryMedalData(country);
+
+                            });
+                    }
+               
+                    function getCountryMedalData(country){
+
+                        var medal_dict =[];
+
+                        for( var i =0; i<data.length; i++){
+                            if (data[i].Country== country && data[i].Year!="Total"){
+                                
+                                var medals=[];
+                                medals[0]=data[i].Bronze;
+                                medals[1]=data[i].Silver;
+                                medals[2]=data[i].Gold;
+
+                                medal_dict.push({
+                                    key: data[i].Year,
+                                    value: medals
+                                })
+                        drawCountryTimeline(medal_dict)
+                            } //end of if
+                        }//end of for
+                    }//end of function
+
+                    function drawCountryTimeline(medals){
+
+                        d3.selectAll("svg").remove();
+
+                    }
 
             
             });
