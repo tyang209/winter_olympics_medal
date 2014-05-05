@@ -30,10 +30,7 @@
         <script type="text/javascript">
             d3.json("medals.json", function(data){
                 //data is an array of objects
-                var w = 1200;
-                var h = 1600;
-                var textPadding = 200
-                var scalePadding = 25
+
                 dataset=[];
                 for( var i =0; i<data.length; i++){
                     if (data[i].Year=="Total"){
@@ -74,39 +71,42 @@
 
                 };
 
-                
-
-
-
-
-                var xScale = d3.scale.linear()
-                            .domain([0,d3.max(dataset.map(function(d){
-                                                return d.TotalMedals
-                            }))])
-                            .range( [ 0 ,w-textPadding-20 ], 0.02);
-
-                var svg = d3.select("body").append("svg")
-                            .attr("width",w)
-                            .attr("height",h);
-
-                var buttonSort = d3.select("#Sort")
-                                .on("click", function(){
-                                    sortBars();
-                                });
-                              
-                var bronzeBars = svg.append("g");
-
-                var silverBars = svg.append("g");   
-
                 var sortedAlpha = new Boolean(true); //dataset starts in alpha order
 
-                var barPadding = 3;
-
-                var xAxis   = d3.svg.axis().scale(xScale).orient("top");
-
-
-                var goldBars = svg.append("g");                                
+  
                 function drawInitial(medalData){
+                    d3.selectAll("svg").remove();   
+
+                    var w = 1200;
+                    var h = 1600;
+
+                    var textPadding = 200
+                    var scalePadding = 25
+                    var xScale = d3.scale.linear()
+                                .domain([0,d3.max(dataset.map(function(d){
+                                                    return d.TotalMedals
+                                }))])
+                                .range( [ 0 ,w-textPadding-20 ], 0.02);
+
+                    var svg = d3.select("body").append("svg")
+                                .attr("width",w)
+                                .attr("height",h);
+
+                    var buttonSort = d3.select("#Sort")
+                                    .on("click", function(){
+                                        sortBars();
+                                    });
+                                  
+                    var bronzeBars = svg.append("g");
+
+                    var silverBars = svg.append("g");  
+
+                    var goldBars = svg.append("g");                         
+
+                    var barPadding = 3;
+
+                    var xAxis   = d3.svg.axis().scale(xScale).orient("top");
+           
 
 
                     bronzeBars.selectAll("rect")
@@ -136,98 +136,103 @@
                         .attr("dataum", function(d){
                             return d.Bronze
                         });
-                        
-                    silverBars.selectAll("rect")
-                        .data(dataset)
-                        .enter()
-                        .append("rect")
-                        .attr("x",function(d,i){
-                            return xScale(d.Bronze)+textPadding
-                        })
-                        .attr("y", function(d,i){
-                            return i* ((h-scalePadding)/dataset.length) + scalePadding
-                        })
-                        .attr("width", function(d,i){
                             
-                            return xScale(d.Silver )
-                        })
-                        .attr("height",function(d,i){
-                            return h / dataset.length - barPadding;
-                        })
-                        .attr("fill","#D3D3D3")
-                        .transition()
-                        .attr("id",function (d){
-                            return d.Country +"Silver"
-                        })
-                        .attr("class",function (d){
-                            return d.Country 
+                        silverBars.selectAll("rect")
+                            .data(dataset)
+                            .enter()
+                            .append("rect")
+                            .attr("x",function(d,i){
+                                return xScale(d.Bronze)+textPadding
+                            })
+                            .attr("y", function(d,i){
+                                return i* ((h-scalePadding)/dataset.length) + scalePadding
+                            })
+                            .attr("width", function(d,i){
+                                
+                                return xScale(d.Silver )
+                            })
+                            .attr("height",function(d,i){
+                                return h / dataset.length - barPadding;
+                            })
+                            .attr("fill","#D3D3D3")
+                            .transition()
+                            .attr("id",function (d){
+                                return d.Country +"Silver"
+                            })
+                            .attr("class",function (d){
+                                return d.Country 
 
-                        })
-                        .attr("dataum", function(d){
-                            return d.Silver
-                        });                        ;
+                            })
+                            .attr("dataum", function(d){
+                                return d.Silver
+                            });                        ;
 
-                    goldBars.selectAll("rect")
-                        .data(dataset)
-                        .enter()
-                        .append("rect")
+                        goldBars.selectAll("rect")
+                            .data(dataset)
+                            .enter()
+                            .append("rect")
 
-                        .attr("x",function(d,i){
-                            return xScale(d.Bronze) + xScale(d.Silver)+textPadding
-                        })
-                        .attr("y", function(d,i){
-                            return i* ((h-scalePadding)/dataset.length) + scalePadding
-                        })
-                        .attr("width", function(d,i){
-                            
-                            return xScale(d.Gold )
-                        })
-                        .attr("height",function(d,i){
-                            return h / dataset.length - barPadding;
-                        })
-                        .attr("fill","#ffd700")
-                        .transition()
-             
-                        .attr("id",function (d){
-                            return d.Country +"Gold"
-                        })
-                        .attr("class",function (d){
-                            return d.Country 
-
-                        })
-                        .attr("dataum", function(d){
-                            return d.Gold
-                        });                             
-
-
-                    svg.selectAll("text")
-                        .data(dataset)
-                        .enter()
-  
-                        .append("text")
-                        .text(function(d){
-                            return d.Country;
-                        })
-                        .transition()
+                            .attr("x",function(d,i){
+                                return xScale(d.Bronze) + xScale(d.Silver)+textPadding
+                            })
+                            .attr("y", function(d,i){
+                                return i* ((h-scalePadding)/dataset.length) + scalePadding
+                            })
+                            .attr("width", function(d,i){
+                                
+                                return xScale(d.Gold )
+                            })
+                            .attr("height",function(d,i){
+                                return h / dataset.length - barPadding;
+                            })
+                            .attr("fill","#ffd700")
+                            .transition()
                  
-                        .attr("x",0)
-                        .attr("y",function (d,i){
-                            return i*((h -scalePadding) / dataset.length) +scalePadding +20;
-                        })
-                        .attr("font-family","Georgia")
-                        .attr("font-size","14px")
-                        .attr("fill","black");
+                            .attr("id",function (d){
+                                return d.Country +"Gold"
+                            })
+                            .attr("class",function (d){
+                                return d.Country 
 
-                    svg.append("g")
-                        .attr("class","x axis")
-                         .attr("transform", "translate ("+textPadding+",20)")
-                        .call(xAxis);
+                            })
+                            .attr("dataum", function(d){
+                                return d.Gold
+                            });                             
+
+
+                        svg.selectAll("text")
+                            .data(dataset)
+                            .enter()
+      
+                            .append("text")
+                            .text(function(d){
+                                return d.Country;
+                            })
+                            .transition()
+                     
+                            .attr("x",0)
+                            .attr("y",function (d,i){
+                                return i*((h -scalePadding) / dataset.length) +scalePadding +20;
+                            })
+                            .attr("font-family","Georgia")
+                            .attr("font-size","14px")
+                            .attr("fill","black");
+
+                        svg.append("g")
+                            .attr("class","x axis")
+                             .attr("transform", "translate ("+textPadding+",20)")
+                            .call(xAxis);
+                            
+
+                        svg.selectAll("rect")
+                                .on("click", function(){
+                                    var country = this.getAttribute("class");
+
+                                    getCountryMedalData(country);
+
                         
-                    // svg.append("g")
-                    //     .attr("class","x axis")
-                    //     .attr("translate(0," + h +")")
-                    //     .call(d3.svg.axis().scale(xScale).orient("bottom"));
-                    }
+                                });
+                }
 
                     function update(){
 
@@ -330,14 +335,12 @@
                         // .attr("font-family","sans-serif")
                         // .attr("font-size","11px")
                         // .attr("fill","black");
-                                               
 
                     }
 
 
-
                     drawInitial(dataset);
-                    setEvents();
+
                     function sortBars(){
                         if (sortedAlpha){
                             sortTotal(dataset); 
@@ -353,17 +356,6 @@
 
                     }
 
-                    function setEvents(){
-
-                        svg.selectAll("rect")
-                            .on("click", function(){
-                                var country = this.getAttribute("class");
-
-                                getCountryMedalData(country);
-
-                            });
-                    }
-               
                     function getCountryMedalData(country){
 
                         var medal_dict =[];
@@ -380,20 +372,149 @@
                                     key: data[i].Year,
                                     value: medals
                                 })
+                            }
+                        }
                         drawCountryTimeline(medal_dict)
-                            } //end of if
-                        }//end of for
+
                     }//end of function
 
                     function drawCountryTimeline(medals){
 
+
                         d3.selectAll("svg").remove();
 
+                        var w = 1800;
+                        var h = 400;
+
+                        var svg = d3.select("body").append("svg")
+                                    .attr("width",w)
+                                    .attr("height",h);
+
+                        var yScale = d3.scale.linear()
+                                    .domain([0,d3.max(medals.map(function(d,i){
+                                                        
+                                                        return d.value[0] +
+                                                        d.value[1] +
+                                                        d.value[2]
+                                    }))])
+                                    .range( [ 0 ,h ], 0.02);
+                        
+                        var bronzeBars = svg.append("g");
+
+                        var silverBars = svg.append("g");  
+
+                        var goldBars = svg.append("g");
+
+                        var scalePadding = 20;   
+
+                        var textPadding = 30;      
+
+                        bronzeBars.selectAll("rect")
+                            .data(medals)
+                            .enter()
+                            .append("rect")
+                            .attr("x",function (d,i) {
+                                return i * ((w - scalePadding)/medals.length) + scalePadding
+
+                            })
+                            .attr("y", function(d,i){
+                                return h - yScale(d.value[0]) - textPadding;
+                            })
+                            .attr("width", function(d,i){
+                                
+                                return 20;
+                            })
+                            .attr("height",function(d,i){
+                                return yScale(d.value[0]);
+                            })
+                            .attr("fill","#905923")
+                            .transition()
+                            .attr("class", function(d){
+                                return "bronze";
+                            });
+                        silverBars.selectAll("rect")
+                            .data(medals)
+                            .enter()
+                            .append("rect")
+                            .attr("x",function (d,i) {
+                                return i * ((w - scalePadding)/medals.length) + scalePadding
+
+                            })
+                            .attr("y", function(d,i){
+                                return h - yScale(d.value[1])- yScale(d.value[0]) - textPadding;
+                            })
+                            .attr("width", function(d,i){
+                                
+                                return 20;
+                            })
+                            .attr("height",function(d,i){
+                                return yScale(d.value[1]) ;
+                            })
+                            .attr("fill","#D3D3D3")
+                            .transition()
+                            .attr("class", function(d){
+                                return "SilverColor";
+                            });
+
+                        goldBars.selectAll("rect")
+                            .data(medals)
+                            .enter()
+                            .append("rect")
+                            .attr("x",function (d,i) {
+                                return i * ((w - scalePadding)/medals.length) + scalePadding
+
+                            })
+                            .attr("y", function(d,i){
+                                return h - yScale(d.value[1])- yScale(d.value[0]) - yScale(d.value[2]) - textPadding
+                            })
+                            .attr("width", function(d,i){
+                                
+                                return 20;
+                            })
+                            .attr("height",function(d,i){
+                                return yScale(d.value[2]) ;
+                            })
+                            .attr("fill","#ffd700")
+                            .transition()                     
+                            .attr("class", function(d){
+                                return "gold";
+                            });
+                            // })
+                            // .attr("dataum", function(d){
+                            //     return d.Bronze
+                            // });
+
+                        svg.selectAll("text")
+                            .data(medals)
+                            .enter()
+      
+                            .append("text")
+                            .text(function(d){
+                                return d.key;
+                            })
+                            .transition()
+                     
+                            .attr("x",function (d,i) {
+                                return i * ((w - scalePadding)/medals.length) + scalePadding -3
+
+                            })
+                            .attr("y",function (d,i){
+                                return h-10;
+                            })
+                            .attr("font-family","Georgia")
+                            .attr("font-size","14px")
+                            .attr("fill","black");
+
+                        d3.select(svg).on("click", function(){
+
+                            drawInitial(dataset);
+                        }); //ALMOST THERE
+                                    
                     }
 
             
-            });
-            
+        });
+        
         </script>
     </body>
 </html>
