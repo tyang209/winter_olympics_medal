@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <title>D3 Page Template</title>
-    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="d3/d3.js"></script>
     <style type="text/css">
         svg{
             display: block;
@@ -31,6 +31,10 @@
             d3.json("medals.json", function(data){
                 //data is an array of objects
 
+
+                var bronzeColor ='#CD7F32';
+                var silverColor = '#7f8c8d'
+                var goldColor =  '#f1c40f'
                 dataset=[];
                 for( var i =0; i<data.length; i++){
                     if (data[i].Year=="Total"){
@@ -101,8 +105,7 @@
 
                     var silverBars = svg.append("g");  
 
-                    var goldBars = svg.append("g");                         
-
+                    var goldBars = svg.append("g");  
                     var barPadding = 3;
 
                     var xAxis   = d3.svg.axis().scale(xScale).orient("top");
@@ -124,7 +127,7 @@
                         .attr("height",function(d,i){
                             return h / dataset.length - barPadding;
                         })
-                        .attr("fill","#905923")
+                        .attr("fill",bronzeColor)
                         .transition()
               
                         .attr("id",function (d){
@@ -154,7 +157,7 @@
                             .attr("height",function(d,i){
                                 return h / dataset.length - barPadding;
                             })
-                            .attr("fill","#D3D3D3")
+                            .attr("fill",silverColor)
                             .transition()
                             .attr("id",function (d){
                                 return d.Country +"Silver"
@@ -185,7 +188,7 @@
                             .attr("height",function(d,i){
                                 return h / dataset.length - barPadding;
                             })
-                            .attr("fill","#ffd700")
+                            .attr("fill",goldColor)
                             .transition()
                  
                             .attr("id",function (d){
@@ -250,7 +253,7 @@
                         // .attr("height",function(d,i){
                         //     return h / dataset.length;
                         // })
-                        // .attr("fill","#905923")
+                        // .attr("fill",bronzeColor)
 
               
                         .attr("id",function (d){
@@ -308,7 +311,7 @@
                         // .attr("height",function(d,i){
                         //     return h / dataset.length;
                         // })
-                        // .attr("fill","#ffd700")
+                        // .attr("fill",goldColor)
 
              
                         .attr("id",function (d){
@@ -374,13 +377,13 @@
                                 })
                             }
                         }
-                        drawCountryTimeline(medal_dict)
+                        drawCountryTimeline(medal_dict,country)
 
                     }//end of function
 
-                    function drawCountryTimeline(medals){
+                    function drawCountryTimeline(medals,country_name){
 
-
+                      
                         d3.selectAll("svg").remove();
 
                         var w = 1800;
@@ -389,6 +392,7 @@
                         var svg = d3.select("body").append("svg")
                                     .attr("width",w)
                                     .attr("height",h);
+                        svg.append("text").text(function(){return country_name;})
 
                         var yScale = d3.scale.linear()
                                     .domain([0,d3.max(medals.map(function(d,i){
@@ -397,7 +401,15 @@
                                                         d.value[1] +
                                                         d.value[2]
                                     }))])
-                                    .range( [ 0 ,h ], 0.02);
+                                    .range( [ 0,h ], 0.02);
+                        var yScaleAxis = d3.scale.linear()
+                                    .domain([0,d3.max(medals.map(function(d,i){
+                                                        
+                                                        return d.value[0] +
+                                                        d.value[1] +
+                                                        d.value[2]
+                                    }))])
+                                    .range( [ h , 0], 0.02);          
                         
                         var bronzeBars = svg.append("g");
 
@@ -405,29 +417,34 @@
 
                         var goldBars = svg.append("g");
 
-                        var scalePadding = 20;   
+                        var yearLabel = svg.append("g");                       
+
+
+                        var scalePadding = 50;   
 
                         var textPadding = 30;      
+
+                        var yAxis   = d3.svg.axis().scale(yScaleAxis).orient("left").ticks(10);
 
                         bronzeBars.selectAll("rect")
                             .data(medals)
                             .enter()
                             .append("rect")
                             .attr("x",function (d,i) {
-                                return i * ((w - scalePadding)/medals.length) + scalePadding
+                                return i * ((w - scalePadding)/medals.length) + scalePadding;
 
                             })
                             .attr("y", function(d,i){
-                                return h - yScale(d.value[0]) - textPadding;
+                                return  h - yScale(d.value[0]) - textPadding;
                             })
                             .attr("width", function(d,i){
                                 
-                                return 20;
+                                return 30;
                             })
                             .attr("height",function(d,i){
                                 return yScale(d.value[0]);
                             })
-                            .attr("fill","#905923")
+                            .attr("fill",bronzeColor)
                             .transition()
                             .attr("class", function(d){
                                 return "bronze";
@@ -437,23 +454,23 @@
                             .enter()
                             .append("rect")
                             .attr("x",function (d,i) {
-                                return i * ((w - scalePadding)/medals.length) + scalePadding
+                                return i * ((w - scalePadding)/medals.length) + scalePadding;
 
                             })
                             .attr("y", function(d,i){
-                                return h - yScale(d.value[1])- yScale(d.value[0]) - textPadding;
+                                return  h - yScale(d.value[0]) - yScale(d.value[1])-textPadding;
                             })
                             .attr("width", function(d,i){
                                 
-                                return 20;
+                                return 30;
                             })
                             .attr("height",function(d,i){
-                                return yScale(d.value[1]) ;
+                                return yScale(d.value[1]);// - textPadding- yScale(d.value[0]);
                             })
-                            .attr("fill","#D3D3D3")
+                            .attr("fill",silverColor)
                             .transition()
                             .attr("class", function(d){
-                                return "SilverColor";
+                                return "Silver";
                             });
 
                         goldBars.selectAll("rect")
@@ -465,26 +482,27 @@
 
                             })
                             .attr("y", function(d,i){
-                                return h - yScale(d.value[1])- yScale(d.value[0]) - yScale(d.value[2]) - textPadding
+                                return  h - yScale(d.value[0]) - yScale(d.value[1])-textPadding
+                                        -yScale(d.value[2]);
                             })
                             .attr("width", function(d,i){
                                 
-                                return 20;
+                                return 30;
                             })
                             .attr("height",function(d,i){
                                 return yScale(d.value[2]) ;
                             })
-                            .attr("fill","#ffd700")
+                            .attr("fill",goldColor)
                             .transition()                     
                             .attr("class", function(d){
-                                return "gold";
+                                return "Golden";
                             });
                             // })
                             // .attr("dataum", function(d){
                             //     return d.Bronze
                             // });
 
-                        svg.selectAll("text")
+                        yearLabel.selectAll("text")
                             .data(medals)
                             .enter()
       
@@ -505,7 +523,12 @@
                             .attr("font-size","14px")
                             .attr("fill","black");
 
-                        d3.select(svg).on("click", function(){
+                        svg.append("g")
+                            .attr("class","y axis")
+                            .attr("transform", "translate(40," +(textPadding*-1)+")")
+                            .call(yAxis);
+                            
+                        d3.select("#Sort").on("click", function(){
 
                             drawInitial(dataset);
                         }); //ALMOST THERE
